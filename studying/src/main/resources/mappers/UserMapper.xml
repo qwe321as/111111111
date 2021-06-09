@@ -9,6 +9,11 @@
     FROM member;
   </select>
   
+  <select id="selectLogin" resultType="com.test.studying.dto.UserDto">
+  	SELECT name, birth, id, hp, pw
+    FROM member where id=#{param1} and pw=#{param2};
+  </select>
+  
   <insert id="insertUser" parameterType="com.test.studying.dto.UserDto">
   
  INSERT INTO member (name, birth, id, pw, hp) VALUES (#{name},#{birth},#{id},#{pw},#{hp});

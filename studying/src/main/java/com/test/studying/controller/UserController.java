@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,43 +71,26 @@ public class UserController {
 	    return new ResponseEntity<ResponseResult>(response, HttpStatus.OK);
 		
 	}
-	@RequestMapping("/useradds")
-	public ResponseEntity<ResponseResult> useradds(@RequestBody String requestString) throws Exception{
-		
-		ResponseResult response = new ResponseResult();
-		
-		JSONObject jsonMember = new JSONObject(requestString);
+	
+	@RequestMapping("/userlogin")
+	public ResponseEntity<ResponseResult> userlongin(@RequestBody String requestString) throws Exception{
+		ResponseResult response= new ResponseResult();
 		response.setState(200);
 		response.setMessage("정상 처리 완료");
-		
-//		JSONObject request = jsonMember.getJSONObject("request");
-		
-		String id = jsonMember.getString("id");
-		String name = jsonMember.getString("name");
-		String birth = jsonMember.getString("birth");
-		String hp = jsonMember.getString("hp");
-		String pw = jsonMember.getString("pw");
-		
+		JSONObject jsonmember = new JSONObject(requestString);
+		JSONObject request = jsonmember.getJSONObject("request");
+		String id = request.getString("id");
+		String pw = request.getString("pw");
 		UserDto user = new UserDto();
-		user.setBirth(birth);
-		user.setHp(hp);
-		user.setId(id);
-		user.setName(name);
-		user.setPw(pw);
-		
-		int cnt = userDAO.insertUser(user);
-		
-		//Map<String, Object> result = new HashMap<>();
-		//result.put("UserInfo", user);
-		//System.out.println(cnt);
-		if (cnt<0) {
+		user = userDAO.selectLogin(id, pw);
+		if (user==null) {
 			response.setState(207);
+			response.setMessage("존재하지 않는 회원입니다.");
+			return new ResponseEntity<ResponseResult>(response, HttpStatus.OK);
 		}
 		response.setResult(user);
 		return new ResponseEntity<ResponseResult>(response, HttpStatus.OK);
-		
 	}
-	
 	
 	
 }

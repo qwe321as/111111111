@@ -9,5 +9,8 @@ public interface UserDao {
 	List<UserDto> selectUser() throws Exception;
 
 	int insertUser(UserDto user);
+
+
+	UserDto selectLogin(String id, String pw);
 	
 }

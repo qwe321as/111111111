@@ -12,5 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		return "top"; }
 	@RequestMapping("/singup") public String singup() { 
 		return "singup"; }
+	@RequestMapping("/login") public String login() { 
+		return "login"; }
 
 }
