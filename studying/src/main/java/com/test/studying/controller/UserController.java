@@ -61,6 +61,7 @@ public class UserController {
          
         int cnt = userDAO.insertUser(user);
         
+        System.out.println(cnt);
 	//	Map<String, Object> result = new HashMap<>();
 		//result.put("UserInfo", user);
         System.out.println(cnt);
