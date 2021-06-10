@@ -5,18 +5,18 @@
 <mapper namespace="com.test.studying.dao.UserDao"><!--namespace를 통해 UserDAO와 연결합니다. -->
   		
   <select id="selectUser" resultType="com.test.studying.dto.UserDto">
-  	SELECT name, birth, id, hp, pw
+  	SELECT user_nm, user_birth, user_id, user_hp, user_pw
     FROM member;
   </select>
   
   <select id="selectLogin" resultType="com.test.studying.dto.UserDto">
-  	SELECT name, birth, id, hp, pw
-    FROM member where id=#{param1} and pw=#{param2};
+  	SELECT user_nm, user_birth, user_id, user_hp, user_pw
+    FROM member where user_id=#{param1} and user_pw=#{param2};
   </select>
   
   <insert id="insertUser" parameterType="com.test.studying.dto.UserDto">
   
- INSERT INTO member (name, birth, id, pw, hp) VALUES (#{name},#{birth},#{id},#{pw},#{hp});
+ INSERT INTO member (user_nm, user_birth, user_id, user_pw, user_hp, user_gender, USER_HPCP, user_email) VALUES (#{name},#{birth},#{id},#{pw},#{hp},#{gender},#{hpcop},#{gender});
 
   </insert>
 

@@ -5,9 +5,22 @@ import lombok.Data;
 @Data
 public class UserDto {
 
-	private String name;
-	private String birth;
-	private String id;
-	private String pw;
-	private String hp;
+	private int no;
+	private String code; 
+	private String id; 
+	private String pw; 
+	private String email; 
+	private String name; 
+	private String nickname; 
+	private String birth; 
+	private String hp; 
+	private String hpcop; 
+	private String gender; 
+	private String token; 
+	private String type; 
+	private String version; 
+	private String status; 
+	private String login_dt; 
+	private String create_dt;
 }
+

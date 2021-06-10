@@ -15,9 +15,14 @@
    var main = new Object(); 
    obj.id = mForm.id.value; // form의 값을 오브젝트에 저장
    obj.pw= mForm.pw.value;
-   obj.name = mForm.name.value; // form의 값을 오브젝트에 저장
+   obj.name = mForm.name.value; 
    obj.birth= mForm.birth.value;
-   obj.hp = mForm.hp.value; // form의 값을 오브젝트에 저장
+   obj.hp = mForm.hp.value; 
+   obj.hpcop= mForm.hpcop.value;
+   obj.gender = mForm.gender.value; 
+   obj.email= mForm.email.value;
+   
+   alert(obj.hpcop);
    var request = $.ajax({
     url:"/useradd",
 	contentType : "application/json; charset=UTF-8",
@@ -64,10 +69,23 @@
 		<div class="form-group">
 			<input type="password" name="pw"  class="form-control" placeholder="Enter Password"  required/>
 		</div>
+		
+		<div class="form-group">
+			<input type="email" name="email"  class="form-control" placeholder="Enter Email"  required/>
+		</div>
+		
 		<div class="form-group">
 			<input type="date" name="birth"  class="form-control" required/>
 		</div>
+		
+		<div class="form-group">
+			<input type="text" name="gender"  class="form-control" placeholder="Enter gender" required />
+		</div>
 
+		<div class="form-group">
+			<input type="text"  name="hpcop"  class="form-control" placeholder="Enter hpcop" required />
+		</div>
+		
 		<div class="form-group">
 			<input type="text"  name="hp"  class="form-control" placeholder="Enter hp" required />
 		</div>

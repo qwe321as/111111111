@@ -16,5 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		return "boarder"; }
 	@RequestMapping("/login") public String login() { 
 		return "login"; }
+	@RequestMapping("/ajax") public String ajax() { 
+		return "ajax"; }
 
 }

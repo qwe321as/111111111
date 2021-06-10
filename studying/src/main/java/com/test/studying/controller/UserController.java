@@ -1,8 +1,12 @@
 package com.test.studying.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,9 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.test.studying.common.ResponseResult;
@@ -52,6 +58,9 @@ public class UserController {
         String birth = request.getString("birth");
         String hp = request.getString("hp");
         String pw = request.getString("pw");
+        String hpcop = request.getString("hpcop");
+        String gender = request.getString("gender");
+        String email = request.getString("email");
         
         UserDto user = new UserDto();
         user.setBirth(birth);
@@ -59,6 +68,10 @@ public class UserController {
         user.setId(id);
         user.setName(name);
         user.setPw(pw);
+        user.setHpcop(hpcop);
+        user.setEmail(email);
+        user.setGender(gender);
+        
          
         int cnt = userDAO.insertUser(user);
         
@@ -90,6 +103,21 @@ public class UserController {
 		}
 		response.setResult(user);
 		return new ResponseEntity<ResponseResult>(response, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
+	public void check(HttpServletRequest request, HttpServletResponse resp) throws Exception {
+				
+		String name = request.getParameter("name");
+		
+		JSONObject obj = new JSONObject();
+		JSONArray ja = new JSONArray();
+		
+		ja.put(name);
+		
+		PrintWriter out = resp.getWriter();
+		out.print(ja.toString());
+			
 	}
 	
 	
