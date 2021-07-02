@@ -10,7 +10,6 @@ public interface UserDao {
 
 	int insertUser(UserDto user);
 
-
 	UserDto selectLogin(String id, String pw);
 	
 }

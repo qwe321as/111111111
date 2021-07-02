@@ -15,9 +15,8 @@
   </select>
   
   <insert id="insertUser" parameterType="com.test.studying.dto.UserDto">
-  
- INSERT INTO member (user_nm, user_birth, user_id, user_pw, user_hp, user_gender, USER_HPCP, user_email) VALUES (#{name},#{birth},#{id},#{pw},#{hp},#{gender},#{hpcop},#{gender});
-
+	INSERT INTO member (user_nm, user_birth, user_id, user_pw, user_hp, user_gender, USER_HPCP, user_email) 
+	VALUES (#{name},#{birth},#{id},#{pw},#{hp},#{gender},#{hpcop},#{gender});
   </insert>
 
 </mapper>

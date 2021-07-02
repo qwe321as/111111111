@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import com.test.studying.common.ResponseResult;
 import com.test.studying.dao.UserDao;
 import com.test.studying.dto.UserDto;
+import java.lang.Exception;
+import io.sentry.Sentry;
 
 @RestController
 @MapperScan(basePackages="com.test.studying.dao")//탐색할 패키시 설정
@@ -32,7 +34,13 @@ public class UserController {
 	
 	@RequestMapping("/test")
 	public String test() throws Exception { //query String으로 county를 받도록 설정
-		return "안녕";
+		
+		try {
+		  throw new Exception("This is a test.");
+		} catch (Exception e) {
+		  Sentry.captureException(e);
+		}
+		return "test";
 	}
 	
 	@RequestMapping("/users")
